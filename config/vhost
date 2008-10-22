@@ -5,13 +5,7 @@
 			<IfModule mod_rewrite.c>
 				RewriteEngine On
 			
-				# no-www
-				RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-				RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
-			
 				# rewrite old wordpress links
-				RewriteCond %{REQUEST_FILENAME} !-f
-				RewriteCond %{REQUEST_FILENAME} !-d
-				RewriteRule ^(.*)$ blog/$1.html [L,QSA]
+				RewriteRule ^/200(.*)$ blog/200$1.html [R=301,L]
 			</IfModule>
 </VirtualHost>
