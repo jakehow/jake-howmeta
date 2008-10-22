@@ -1,0 +1,12 @@
+---
+title:  jake howerton -- resume
+layout: home
+filter:
+  - erb
+  - textile
+---
+
+"Greener Media":http://greenermedia.com, Sept 2003 - Dec 2005, Web Developer, Brooklyn, NY 
+* Converted Photoshop layouts built by Web Designer to HTML/CSS. 
+* Build Admin CMS portals for client web sites. 
+* Build, test, configure all PHP/MySQL projects for clients. 

@@ -1,0 +1,11 @@
+---
+title:  jake howerton -- resume
+filter:
+  - erb
+  - textile
+---
+"Sunshine Realty Management":http://sunshineny.com, Jan 2007 - Current, Chief Technologist, New York, NY
+* Built mission critical Rails Applications which enable many core business functions. 
+* Implement company wide collaboration: wikis, email, Basecamp, etc.
+* Used ruby to automate network provisioning and other redundant processes.
+* Provide ownership with guidance on all technical decision making.

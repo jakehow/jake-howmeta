@@ -1,0 +1,19 @@
+---
+title:      jake howerton -- services
+created_at: 2008-10-20 18:14:47.318631 +00:00
+filter:
+  - erb
+  - textile
+nav_item: services
+---
+
+h2. project rescue
+
+
+h2. training
+
+
+h2. code and process audit
+
+* ensure your project meets necessary security and best practice standards
+* 

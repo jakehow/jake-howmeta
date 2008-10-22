@@ -1,0 +1,32 @@
+---
+extension: html
+filter:    erb
+---
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title><%= @page.title %></title>
+   <meta name="author" content="<%= @page.author %>" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+</head>
+<body>
+
+<div class="container home">
+  <div id="jake_photo">
+      <img src="/images/jake_opt.jpg" />
+   </div>
+
+ 	<div id="intro_content">
+      <%= @content %>
+  </div>
+</div>
+<div id="footer">
+	&copy; 2008, Jake Howerton. Built with <%= link_to "webby", "http://webby.rubyforge.org" %>.
+</div>
+</body>
+</html>
