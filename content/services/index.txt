@@ -12,7 +12,7 @@ h2. availability
 
 <div class="body">
 	<p>
-		While I do work full time in my role as Chief Technologist for Sunshine Suites, I am available for short term and part time work outside of this role.  If your project is in distress and in need of <strong>someone to rescue it</strong>, if you need a trainer for <strong>team or one-on-one training</strong>, or if you need someone to <strong>crank out a prototype</strong> as quickly as possible, we should talk.  I am also available for <strong>code and deployment process auditing</strong>. 
+		While I do work full time in my role as Chief Technologist for "Sunshine Suites":http://sunshineny.com, I am available for short term and part time work outside of this role.  If your project is in distress and in need of <strong>someone to rescue it</strong>, if you need a trainer for <strong>team or one-on-one training</strong>, or if you need someone to <strong>crank out a prototype</strong> as quickly as possible, we should talk.  I am also available for <strong>code and deployment process auditing</strong>. 
 	</p>
 	
 	<p>
