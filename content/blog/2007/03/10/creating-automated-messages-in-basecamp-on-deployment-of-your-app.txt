@@ -1,0 +1,21 @@
+--- 
+title:      Creating Automated Messages In Basecamp on Deployment of your App
+created_at: 2007-03-10 21:47:44.289867 -04:00
+layout:  article
+blog_post:  true
+filter:
+  - textile
+--- 
+
+There are a couple of reasons why I think this is a good idea.
+
+# After I normally deploy I usually have to go through my todo list and look over what I have accomplished, before sending an email manually to my team ( I am the only developer).  This eliminates any errors and ommissions associated with this process.
+# Forcing myself to do more atomic commits and writing more coherent commit messages.  I often catch myself committing from the base directory of my app when I have made changes in more than one part of my application. In that case I either have to write a complex commit message, or (usually) write a crappy one.  Now that I know this is going to get emailed to non-technical people and/or clients, it forces me to do better
+
+<script src="http://gist.github.com/18534.js"></script>
+
+There are a few other ideas floating around that are similar to this which I used as my inspiration:
+
+* "very similar method":http://teamaskins.net/archive/2006/06/12/rake__subversion__basecamp_api at TeamAskins
+* the post-commit hook "way":http://www.webtypes.com/2006/03/31/subversion-post-commit-hook-using-basecamp-api
+* if youd rather "have it":http://pastie.caboo.se/32697 in Campfire from "Chris Wanstrath":http://errtheblog.com/

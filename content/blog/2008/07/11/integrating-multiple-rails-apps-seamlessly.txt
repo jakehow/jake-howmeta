@@ -1,0 +1,27 @@
+--- 
+title:      Integrating Multiple Rails Apps Seamlessly
+created_at: 2008-07-11 21:47:44.289867 -04:00
+layout:  article
+blog_post:  true
+filter:
+  - textile
+--- 
+
+I just did a presentation at nyc.rb on integrating multiple rails apps:
+
+"When One App Is Not Enough":/assets/mutiple-apps.pdf
+
+Here are some links to the projects I mentioned ( let me know if I am missing any):
+
+multi_app_routing (<a href="http://github.com/jakehow/mutli_app_routing">http://github.com/jakehow/mutli_app_routing</a>)
+braid (<a href="http://github.com/evilchelu/braid">http://github.com/evilchelu/braid</a>)
+supervisord (<a href="http://supervisord.org">http://supervisord.org</a>)
+monit (<a href="http://www.tildeslash.com/monit/">http://www.tildeslash.com/monit/</a>)
+god (<a href="http://github.com/mojombo/god">http://github.com/mojombo/god</a>)
+bj (<a href="http://github.com/atmos/bj">http://github.com/atmos/bj</a>)
+starling (<a href="http://github.com/starling/starling">http://github.com/starling/starling</a>)
+beanstalkd (<a href="http://xph.us/software/beanstalkd/">http://xph.us/software/beanstalkd/</a>)
+auto_cron (<a href="http://github.com/fhwang/auto_cron">http://github.com/fhwang/auto_cron</a>)
+sinatra (<a href="http://github.com/bmizerany/sinatra">http://github.com/bmizerany/sinatra</a>)
+halcyon (<a href="http://github.com/mtodd/halcyon">http://github.com/mtodd/halcyon</a>)
+merb (<a href="http://github.com/wycats/merb-core">http://github.com/wycats/merb-core</a>)

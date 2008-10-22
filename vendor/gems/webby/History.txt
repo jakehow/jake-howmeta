@@ -1,0 +1,206 @@
+== 0.9.3 / 2008-10-08
+
+* 4 minor enhancements
+  - Added a "wikiwords" filter to process [[text]] as links to other pages
+    (thanks to Paul)
+  - Added colorization to the output text (facets gem required)
+  - Replaced the Heel webserver with webrick
+  - Special windows version with windows line endings in generated files
+* 2 bug fixes
+  - Fixed a bug on Windows where line endings were messing with meta-data
+  - The paginator was not linking correctly back to the first page from
+    subsequent pages in a list
+
+== 0.9.2 / 2008-09-11
+
+* 1 bug fix
+  - Layouts were not being found if more than one layout was in a directory
+    in the layouts folder
+
+== 0.9.1 / 2008-09-10
+
+* 1 major enhancement
+  - multiple output files can be generated from a single page
+* 2 minor enhancements
+  - simplified the handling of meta-data at the top of files
+  - pagination now honors the "page per directory" flag
+* 2 bug fixes
+  - filename extensions were not being preserved when creating a new page
+  - webby now works properly with rake 0.8.2
+
+== 0.9.0 / 2008-08-25
+
+* 2 major enhancements
+  - The "rake" command line tool has been replaced by the "webby"
+    command line tool for day to day site tasks
+  - Now using the "rdiscount" gem for markdown syntax
+* 4 minor enhancements
+  - Layouts can exist in subdirectories of the layouts folder
+  - Addition of a "tumblog" template
+  - Addition of a sitemap file (Ana Nelson)
+  - Updated to version 6.4.2 of ImageMagick for tex2img conversions
+* 5 bug fixes
+  - Better error message when an unkonwn filter is given
+  - Table of contents generation bug
+  - Failing to clean out the "content_for" cache when doing a
+    multi-page render
+  - Explicitly loading the RedCloth gem
+  - Handling exceptions from system calls on the Windows platform
+
+== 0.8.4 / 2008-06-03
+
+* 1 minor improvement
+  - Global defaults for HAML and SASS [Dag Odenhall]
+* 1 bug fix
+  - Added the blog templates to the package
+
+== 0.8.3 / 2008-06-02
+
+* 2 major enhancements
+  - Added blogging support
+  - Added S5 slide presentation support
+* 6 minor enhancements
+  - Changed the arguments to the DB#find method
+  - Added locals support for page templates
+  - Updated atom feed generation template
+  - Partials now support local variables when rendering
+  - Can guard rendering results from processing by subsequent filters
+    (useful when rendering partials or embedding other pages)
+  - Support for "content_for" style captures [M@ McCray]
+* 5 bug fixes
+  - Fixed reference to an non-existent Error class
+  - Basepath filter now handles XML files properly
+  - Removed the "--delete" flag from the rsync options [Denis Defreyne]
+  - Fixed a nil cursor bug in the rendering filter stack
+  - Recursive find now works from the root content folder (bug 20281)
+
+== 0.8.2 / 2008-03-12
+
+* 2 bug fixes
+  - Fixed an error when paginating on an index page
+  - Fixed an error where leading and trailing whitespace was being
+    stripped from syntax highlighted code blocks
+
+== 0.8.1 / 2008-03-09
+
+* 2 major enhancement
+  - Added support for UltraViolet syntax highlighting
+    (code provided by Guillaume Carbonneau)
+  - Added rake tasks to validate the hyperlinks for the HTML files
+    in the output directory
+* 2 minor enhancements
+  - Improved error handling and reporting during the build process
+  - Added site defaults for the helpers (coderay, graphviv, latex,
+    etc.)
+* 1 bug fix
+  - Fixed an error with the prev / next calls in the paginator and
+    rendering links to those pages
+
+== 0.8.0 / 2008-02-28
+
+* 3 major enhancements
+  - Added support for partials
+  - Refactored the coderay and graphviz filters into helper methods
+    accessible from ERB
+  - Added support for embedding LaTeX mathematical equations
+* 3 minor enhancements
+  - Added a template file for creating Atom feeds
+  - The SITE configuration is available in pages and layouts as
+    the @config variable
+  - Can specify the port the Heel webserver starts on using the
+    SITE.heel_port option in the Rakefile
+* 2 bug fixes
+  - When creating pages in directory mode the full page path was
+    not being created
+  - Read only files were being created in the output folder
+    preventing them from being overwritten if changed
+
+== 0.7.4 / 2008-02-15
+
+* 3 minor enhancements
+  - Added "limit" and "sort_by" options to the pages find method
+  - Removed dependency on RedCloth for outline generation
+  - Added some more options for outline generation, numbering, and
+    table of contents generation
+* 1 bug fix
+  - Fixed incompatibility with the new logging library
+
+== 0.7.3 / 2008-02-05
+
+* 2 bug fixes
+  - The setup.rb task now requires rubygems in case it is not in the
+    user's rubyopt
+  - Fixed file line endings on Windows when creating a new site
+
+== 0.7.2 / 2008-02-02
+
+* 4 minor enhancements
+  - Created a URI base path rewriter filter
+  - Create an outline filter for generating table of contents
+  - Pages can be created as files or as directories
+  - The @pages find method now recurses into sub-directories
+* 3 bug fixes
+  - Fixed a bug in the graphviz filter where the wrong map ID was
+    being generated
+  - Now passing the binding of the Renderer to the HAML filter
+    (this makes the @page, @pages availabe in HAML pages)
+  - The created_at attribute was not being created as a YAML
+    time object
+
+== 0.7.1 / 2008-01-03
+
+* 2 bug fixes
+  - No longer appending a '.' to files without an extension (like .htaccess)
+    (patch supplied by Stephen Duncan)
+  - Fixed a "No such file or directory" error when creating pages
+    from templates
+
+== 0.7.0 / 2008-01-01
+
+* 1 major enhancement
+  - Refactored how the filters are handled (thanks Bruce Williams)
+* 2 minor enhancements
+  - Added helper methods for URL and anchor generation
+  - Added rake task to delete the generated website
+* 2 bug fixes
+  - Fixed a bug arising from the order of the logger creation
+  - Removed the file extension form the page defaults
+    (should be set in the layout or the page itself)
+
+== 0.6.0 / 2007-12-04
+
+* Added support for embedded graphviz images and image maps
+* Tidy can be used as a filter to format HTML and check for errors
+* Simplified coderay when used with textile
+
+== 0.5.1 / 2007-11-29
+
+* Growl notifications now work on Leopard / Tiger
+* Fixed a few things for compatibility with Ruby 1.9
+
+== 0.5.0 / 2007-11-26
+
+* Launching heel now works on Windows boxen
+* Now using "logging" gem to output build status
+* Updated find routine for the pages DB
+* First whack at pagination support
+
+== 0.4.0 / 2007-09-18
+
+* Updated the Blueprint CSS stylesheets to version 0.5
+* Updating documentation and comments
+
+== 0.3.0 / 2007-09-17
+
+* Added support for CodeRay syntax highlighting
+
+== 0.2.0 / 2007-08-28
+
+* Updated rake tasks for website deployment
+* Can use 'heel' and 'launchy' for viewing websites
+* Webby executable can update rake tasks for existing websites
+* Added more rdoc documentation to classes
+
+== 0.1.0 / 2007-08-22
+
+* Birthday!

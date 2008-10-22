@@ -1,0 +1,40 @@
+--- 
+title:      Sneaking around in Highrise
+created_at: 2007-10-12 21:47:44.289867 -04:00
+layout:  article
+blog_post:  true
+filter:
+  - textile
+---
+
+Ok, so there is a "huge thread":http://forum.37signals.com/highrise/forums/9/topics/807 over at the "Highrise Customer forums":http://forum.37signals.com/highrise/forums/ in regards to a feature that a lot of people feel is insufficient.
+
+In Highrise, you can create and assign tasks to yourself, or other team members.  This is great because you will get an email at the beginning of the day and right before a task is due, telling you to do it.  I was thinking of using this for our sales staff and letting the receptionists set sales appointments for the sales people.
+
+However, tasks are severely limited.  You can only see tasks that you have created.  This means that if you work on a team of people the feature is near worthless for time specific tasks(like meetings)  if receptionist A sets an appointment for Salesperson A,  Receptionist B has no way of finding this out and can double book the Salesperson A's schedule.
+
+After bitching about it yesterday on their forums like everyone else, I took an hour to do my PDI duties today and came up with a hack that lets you sync meetings into "Google Calendar":http://google.com/calendar.  It is an ugly hack however and hopefully 37signals will mitigate this issue sooner rather than later.
+
+What I have done is instructed the receptionists to use only the notes feature for these types of meetings.  They are entering the data like so:
+
+<pre>
+Meeting @ Location
+For: users@emailaddress.com
+10/12/07 @ 6pm
+Notes: anything you want here
+</pre>
+
+So I went to implement it and hit another roadblock...  There is no way to get all notes in the API, so for now I am going to put it on a cron job and get the atom feed.
+
+Things you need:
+
+<pre>
+sudo gem install icalendar
+sudo gem install atom
+</pre>
+
+Get gcalendar.rb "here":http://rubyforge.org/projects/gcalendar/
+
+I dont have this in production yet, but I think basically all you would have to change is, implementing LAST_CHECKED constant however you feel best.
+
+<script src="http://gist.github.com/18537.js"></script>

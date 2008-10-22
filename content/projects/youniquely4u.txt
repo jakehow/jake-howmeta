@@ -1,0 +1,8 @@
+---
+title:      youniquely4u
+created_at: 2008-10-21 22:30:20.608891 -04:00
+filter:
+  - erb
+  - textile
+---
+p(title). <%= h(@page.title) %>

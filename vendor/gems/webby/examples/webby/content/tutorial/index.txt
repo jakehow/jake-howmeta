@@ -1,0 +1,135 @@
+--- 
+title:      Tutorial
+created_at: 2007-08-21 17:02:40.000000 -06:00
+filter:
+  - erb
+  - textile
+--- 
+h1. Tutorial
+
+h2. Require
+
+Webby has a family of friends that help it get it's job done. The command-line is where Webby lives and works. You should be comfortable with your terminal if you're going to get serious with Webby. Webby is built on top of "Ruby":http://www.ruby-lang.org/, and many of the templates use Ruby in one way or another. Learning a little bit about Ruby will make Webby far less intimidating.
+
+This tutorial requires *Ruby* to be installed as well as *Webby* and the "*RedCloth*":http://whytheluckystiff.net/ruby/redcloth/ templating engine. RedCloth provides support for the Textile markup language.
+
+h2. Create a Site
+
+You need a catchy name for your website to survive in this Web 2.0 world. Webby is distinctly Web 1.0 (or maybe Web 0.5) so we'll use the name *my_site*.
+
+<pre class="code">
+webby-gen website my_site
+</pre>
+
+This command creates a new folder named _my_site_, and the new Webby based website resides there. Change directories to the _my_site_ folder and do a listing. You will see the following files and folders:
+
+<pre class="code">
+Sitefile
+content/
+layouts/
+lib/
+output/
+tasks/
+templates/
+</pre> 
+
+h2. Build Your Site
+
+What? Didn't we just do that?
+
+Webby creates a site template - the larval form of your new website. The _webby_ command line tool is used to generate the HTML files for your site - a unique, beautiful butterfly.
+
+<pre class="code">
+webby
+</pre>
+
+Again, you will see lots of output scrolling across the screen. This is Webby copying files from the _content_ folder to the _output_ folder. Some files are copied "as is", while others are compiled into HTML using your markup language of choice.
+
+Point your web browser to *my_site/output/index.html* to see what your new website looks like.
+
+h2. Making Changes
+
+Of course "Lorem Ipsum" is some great content, but if everyone posted their site in such a state the web would be a monochromatic smurf blue. Let's change that into something more creative, more us. Open the *content/index.txt* file in your favorite editor.
+
+<pre class="code">
+<%= Webby::YAML_SEP %> 
+title:      Home Page
+created_at: Tue Aug 21 17:02:40 -0600 2007
+filter:
+  - erb
+  - textile
+<%= Webby::YAML_SEP %> 
+h2. <%%= @page.title %>
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nunc congue ipsum
+vestibulum libero. Aenean vitae justo. Nam eget tellus. Etiam convallis, est
+eu lobortis mattis, lectus tellus tempus felis, a ultricies erat ipsum at
+metus.
+
+h2. Litora Sociis
+...
+</pre>
+
+This is not the entire contents of the file, just to enough to get a feel for how Webby operates. The text between the dashed lines "@---@" is information about the page, referred to as _meta-data_. Obviously one piece of information is the *title* of the page, "Home Page". The other is a little more cryptic and bears some explaining.
+
+The content of this page is not HTML, but it ends up that way. How? Webby uses _filters_ on the page to transform the text into HTML. The *filter* item in the meta-data tells Webby which filters to apply to the page. Two filters will be applied, "erb" and "textile" - in that order. Each filter operates on the page text (everything after the meta-data).
+
+The erb filter (erb stands for "embedded Ruby") allows Webby to process Ruby statements found in the page text and to substitute the output of those Ruby statements back into the page text. The Ruby statements appear between @<%%= ruby_code %>@ delimiters. The meta-data found at the top of the page is made available through the @@page@ object. You can see from the index.txt file that the page title, "Home Page", will be substituted on the first line.
+
+The textile filter operates on all page text. It is a human readable markup that gets converted into HTML. For example, the line <notextile><code>h2.&nbsp;Litora&nbsp;Sociis</code></notextile> will be converted into <notextile><code>&lt;h2&gt;&nbsp;Litora&nbsp;Sociis&lt;/h2&gt;</code></notextile> by the textile filter. It is a powerful markup language that simplifies web publishing. 
+
+Okay, back to our regularly scheduled page changes. Go ahead and change the title of the page in the meta-data. Then run webby again.
+
+<pre class="code">
+webby
+</pre>
+
+You'll notice much less output than before. Webby only builds those pages that you have modified. You'll also notice, after reloading the page in your browser, that the title has now changed.
+
+Play around with making changes, running webby, and seeing your changes show up in the web browser. Done? All right! Let's go on to the next section.
+
+bq. *TIP* You can simplify this whole process - modify content, webby, view in browser - by running <notextile><code>webby&nbsp;autobuild</code></notextile> on the command line. This starts a build loop that compiles the content of your website as files change. All you need to do now is - modify content, view in browser.
+
+h2. Creating a Page
+
+Let's tell the world all about your new website. We'll create a new _about_ page that describes what this website is all about, who you are, and the answer to life, the universe, and everything.
+
+<pre class="code">
+webby create:page about
+</pre>
+
+The output from the command tells you that a new file has been created - @content/about.txt@. You can now edit this page, enter some content, and somewhere in there include _42_.
+
+h2. Change the Layout
+
+The next step is to change how the page looks. In fact, we want to change the appearance of all the pages in our website. This is easily done by changing the website layout file in the _layouts_ folder. Open the *layouts/default.txt* file in your favorite editor.
+
+<pre class="code">
+<%= Webby::YAML_SEP %> 
+extension: html
+filter:    erb
+<%= Webby::YAML_SEP %> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+   <title><%%= @page.title %></title>
+   <meta name="author" content="<%%= @page.author %>" />
+...
+</pre>
+
+Ahhh, I love the smell of HTML in the morning!
+
+You'll notice that the layout file has meta-data just like the content files we've been editing. The *extension* defines the filename extension that will be appended to every file generated by this layout. Just like the content files, layouts are filtered to produce valid HTML. The current page being rendered is available in the layout using the @@page@ variable. We can see in the HTML header data that the page title will be set to the value of the @@page.title@.
+
+The meta-data of the layout is not made available in the layout itself - just the meta-data of the content file being rendered.
+
+Let's change the layout by removing the sidebar from every page. Find the sidebar div <notextile><code>&lt;div&nbsp;class="column&nbsp;span-5&nbsp;append-2&nbsp;last"&gt;</code></notextile>. Delete that div, run rake to build the website again, and take a look at the site in your browser. You'll notice that both pages have been updated since both depend upon the default layout.
+
+h2. What Now?
+
+Let your creativity run wild!
+
+You can read more about the features of Webby in the "user manual":/user-manual. There you'll discover how to reference layouts other than the default, how to create page templates for simplifying blog posts. Take a look at the "tips &amp; tricks":/tips_and_tricks for more ideas on simplifying your web development work cycle.

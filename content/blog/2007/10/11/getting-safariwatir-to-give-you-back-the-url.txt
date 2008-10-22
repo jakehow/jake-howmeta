@@ -1,0 +1,16 @@
+--- 
+title:      Getting SafariWatir to give you back the URL
+created_at: 2007-10-11 21:47:44.289867 -04:00
+layout:  article
+blog_post:  true
+filter:
+  - textile
+---
+
+Safariwatir is an (incomplete) implementation of Watir except that, you guessed it: it drives Apple's Safari browser rather than IE.  It is missing a decent chunk of functionality from its IE counterpart,  but one thing that was particularly irking me in some integration tests was the inability to get the current URL back.
+
+Throw this in your test_helper or spec_helper
+
+<script src="http://gist.github.com/18535.js"></script>
+
+Not bad at all...

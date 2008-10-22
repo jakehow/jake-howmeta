@@ -1,0 +1,41 @@
+--- 
+title:      How NOT to Recruit Rails Developers
+created_at: 2007-03-23 21:47:44.289867 -04:00
+layout:  article
+blog_post:  true
+filter:
+  - textile
+---
+
+Everyone knows that the market for Rails developers is pretty tight, for a host of reasons.  The technology is new, so only the real movers got on board with enought time to have very sharp skills at this point.  As the market fills out, this discrepancy between demand for Rails developers and the actual supply is going to be a breeding ground for recruiters trying to pair people with talent to interesting opportunities.  This my friend is a good thing for those of us on the supply side(for now).
+
+
+Anywhere there is this kind of reward there are probably going to be people operating in shady ways.  Over at the "workingwithrails":http://www.workingwithrails.com/</a> website, (which had a shaky shady start of its own; see "fun":http://rubyforge.org/pipermail/mongrel-users/2006-December/002541.html from zedas), there is a list of tons of Rails developers, including me, and recruiters seem to be trolling this resource to find leads on talent. This morning I got this email.
+
+
+<pre>
+Hello,
+
+While checking out the Working With Rails website, you listed 
+yourself as available for hire. We are looking for a programmer 
+who can create support and administrative systems in Ruby 
+on Rails for a game related project.
+
+The job requires a minimum commitment of 25 hours per week 
+and is an offsite position. If this is something you would be 
+interested in, please email me back with a phone number or 
+aim/skype contact so we can talk in more detail.
+
+Thank You
+</pre>
+
+
+
+Here are some hints for potential recruiters:
+
+
+* Include your freakin' name in your email
+* Dont use a generic scamish sounding email address rubyhires-at-gmail-dot-com
+* If you are a small one person shop, embrace it, instead of hiding behind smoke and mirrors, because then we are just going to assume the worst
+
+By following these concepts you will be able to avoid embarassment for both yourself and your clients,  as well as the ire of people in the ruby community with the talent that you need to tap.

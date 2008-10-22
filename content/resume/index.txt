@@ -6,19 +6,18 @@ filter:
 nav_item: resume
 dirty: 		true
 ---
-h2. primary objective
+h2. objective
 
 To help businesses and software projects succeed through attention to detail, process, and outcome.
 
-h2. related skills
+h2. skills
 * 8+ years developing web sites and applications
 * developing "Ruby on Rails":http://rubyonrails.org applications since late 2005 (pre 1.0)
 * maintaining and upgrading application codebases across versions of Rails
 * building, managing and executing production deployment scenarios
 * contributing to "open source projects":http://github.com/jakehow in the ruby community
-* consulting with various businesses to translate business requirements into software
 
-h2. work experience
+h2. experience
 
 <%
   jobs = @pages.find(:all, :in_directory => 'resume/jobs', :recursive => true, :sort_by => 'filename' )

@@ -1,0 +1,196 @@
+---
+extension: css
+filter:    sass
+layout:    nil   # no layout
+sass_options:
+  :style: :expanded
+---
+!text        = #000
+!border      = #CCC
+!header      = #111
+!link        = #125AA7
+!link_hover  = #000
+!blockquote  = #666
+!code        = #000
+!box_bg      = #EEE
+!highlight   = #B2CCFF
+!quiet       = #666
+!alt         = #666
+
+@import blueprint/screen.css
+
+body
+  :margin       0
+  :color =      !text
+  :font-family  Verdana, sans-serif
+  :background   white url('background.gif') repeat-x left top
+
+// Headings
+// ------------------------------------------------------------------------
+h1,h2,h3,h4,h5,h6
+  :color =      !header
+  :font-weight  bold
+
+h2,h3,h4,h5,h6
+  :border-bottom = 2px solid !highlight
+
+// Text Elements
+// ------------------------------------------------------------------------
+a
+  :color =   !link
+  &:hover
+    :color = !link_hover
+
+blockquote
+  :color =   !blockquote
+
+pre
+  :margin-left   18px
+  :padding       8px 8px 8px 18px
+  :color =       !code
+  :font-family   monospace, courier
+  :overflow      auto
+//  :background =  !box_bg
+//  :border =      1px solid !border
+  :border-left = 3px solid !border
+
+hr
+  :background = !highlight
+  :color =      !highlight
+
+code
+  :background-color = !box_bg
+
+// Tables
+// ------------------------------------------------------------------------
+table
+  :border-top =    1px solid !border
+  :border-left =   1px solid !border
+th,td
+  :border-bottom = 1px solid !border
+  :border-right =  1px solid !border
+
+// Default Classes
+// ------------------------------------------------------------------------
+.quiet
+  :color = !quiet
+.alt
+  :color = !alt
+
+// My Site Stylings
+// ------------------------------------------------------------------------
+#header
+  :margin              0 0 25px 0
+  :padding-top         20px
+  a
+    :color =           !header
+    :text-decoration   none
+  h1
+    :margin            0
+    :font-size         2.0em
+    :letter-spacing    0.25em
+  p
+    :font-style        italic
+    :font-weight       normal
+    :color =           !quiet
+  ul
+    :float             right
+    :margin            0
+    :padding           0
+    :text-align        right
+    :font-size         1.0em
+    :list-style-type   circle
+    li
+      :display         inline
+      :margin          0 0 0 2.5em
+      a
+        :color =       !quiet
+        :font-weight   bold
+        &:hover
+          :color =     !header
+
+#footer
+  :margin-top        18px
+  :font-size         0.8em
+  hr
+    :margin-bottom   18px
+  p
+    :text-align      center
+
+.CodeRay
+  pre
+    :font             12px monospace, courier
+
+div.toc
+  :float              right
+  :padding            8px
+  :margin-left        16px
+  :margin-bottom      16px
+  :background-color = !highlight
+  :border =           1px solid !border
+  ol
+    :margin-bottom    0.5em
+    ol
+      :margin-bottom  0
+  p.title
+    :margin-bottom    0.25em
+    :font-weight      bold
+    :font-size        1.2em
+    :text-align       center
+
+ul
+  ul
+    :margin-bottom    0
+
+span.heading-num
+  :margin-right  10px
+
+p.fn
+  :color =       !blockquote
+  :margin-left   1.5em
+
+p.span-2
+  :clear         left
+
+pre.option
+  :float         left
+  :margin-left   80px
+  :width         500px
+  :clear         both
+
+div.label
+  :float         left
+  :clear         left
+  :margin-right  10px
+  :width         110px
+  :font-weight   bold
+
+div.desc
+  :float         left
+  :margin
+    :right       0
+    :bottom      1.5em
+  :width         510px
+  ul
+    :margin-bottom 0
+
+p.TODO
+  :color            white
+  :background-color red
+  :font-weight      bold
+  :padding          5px 0.5em
+
+p.pull
+  :float         left
+  :clear         left
+  :margin        0 10px 0 -120px
+  :width         110px
+  :text-align    right
+
+p.pulltext
+  :float         left
+  :clear         right
+  :margin-right  10px
+  :width         670px
+
+// EOF

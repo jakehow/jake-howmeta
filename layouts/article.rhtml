@@ -1,0 +1,44 @@
+---
+extension: html
+filter:    erb
+---
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>jake howerton -- <%= @page.title %></title>
+   <meta name="author" content="<%= @page.author %>" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+</head>
+<body>
+
+<div class="container">
+	<div id="header">
+		<h1>Jake Howerton</h1>
+		<br />
+		<ul id="nav">
+			<li><%= link_to 'home', '/' %></li>
+			<li><%= link_to 'blog', '/blog', :attrs => {:class => "active"} %></li>
+			<li><%= link_to 'projects', '/projects' %></li>
+			<li><%= link_to 'services', '/services' %></li>
+			<li><%= link_to 'resume', '/resume' %></li>
+		</ul>
+	</div>
+	
+ 	<div id="content">
+		<div class="article">
+		  <h1><%= link_to_page(@page) %><span class="date">(<%= @page.created_at.strftime('%Y-%m-%d') %>)</span></h1>
+
+		  <div class="body">
+		    <%= @content %>
+		  </div>
+			<%= Disqus::Widget::thread(:account=>"jake-howmeta") %>
+		</div>
+	</div>
+</div>
+</body>
+</html>

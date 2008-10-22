@@ -1,0 +1,419 @@
+--- 
+title:      User Manual
+created_at: 2007-08-29 08:57:00.000000 -06:00
+filter:
+  - erb
+  - textile
+  - outline
+--- 
+<div class="toc push-1">
+
+p(title). Table of Contents
+
+<toc toc_range="h2-h6" />
+</div>
+
+h1. <%= h(@page.title) %>
+
+h2. Introduction
+
+Webby was created out of the desire for a simple way to build and manage small websites. The goal was a system that could take files written in plain text, combine them with a layout file and produce web pages. In this system, a single page can be written quickly without the need for HTML markup; the look and feel of the entire site can be changed by modifying the site layout file.
+
+<% graphviz :path => "images", :alt => "Webby Overview" do %>
+digraph overview {
+  rankdir = LR;
+  edge [fontname="Verdana", fontsize=8];
+  node [fontname="Verdana", fontsize=10];
+
+  layout [label="Layout",color="#BBBBBB",style=filled];
+  p1 [label="Page 1",color=red];
+  h1 [label="HTML 1",color=red];
+  p2 [label="Page 2",color=green];
+  h2 [label="HTML 2",color=green];
+  p3 [label="Page 3",color=blue];
+  h3 [label="HTML 3",color=blue];
+
+  p1 -> layout -> h1 [color=red];
+  p2 -> layout -> h2 [color=green];
+  p3 -> layout -> h3 [color=blue];
+}
+<% end %>
+
+The diagram above shows the basic concept of how Webby works. Changing the layout file will result in changes to every generated HTML file. Changes to a single page will result in changes only to the HTML file corresponding to that particular page.
+
+Webby does not limit the output to HTML. Webby can be used to generate XML files for RSS or Atom news feeds, CSS files for styling web pages, or any other type of text file that you can think of.
+
+h3. Requirements
+
+Webby is written in the Ruby programming language. To install and run Webby you will need the following applications installed on your system:
+
+* "Ruby":http://ruby-lang.org
+* "RubyGems":http://rubygems.org/read/chapter/3
+
+h3. Installation
+
+Webby is easily installed as a Ruby gem. From a command prompt type the following:
+
+pre. sudo gem install webby
+
+This will install Webby and all its required dependencies.
+
+To make use of all the features Webby has to offer, the following gems should also be installed. These gems provide different ways to transform text into HTML or CSS.
+
+* RedCloth
+* rdiscount
+* haml
+* coderay
+* ultraviolet
+
+Webby can also use a few other programs to clean up generated HTML and to create pretty graphs and pictures. Where external programs are required, they will be duly noted in the manual.
+
+h3. Running Webby
+
+When Webby is installed, two command line programs are installed alongside the gem: @webby@ and @webby-gen@. The latter program is used to create a new Webby site folder and files. The former program is used within the site folder to generate the final site output from the content and layouts. Type @webby --help@ on the command line to see the options this program supports.
+
+<pre>
+webby --help
+
+Usage: webby [options] task [task args]
+
+    -D, --describe [PATTERN]         describe the tasks (matching optional PATTERN), then exit
+    -P, --prereqs                    display the tasks and dependencies, then exit
+    -T, --tasks [PATTERN]            display the tasks (matching optional PATTERN) with descriptions, then exit
+    -t, --trace                      turn on invoke/execute tracing, enable full backtrace
+
+common options:
+    -h, --help                       show this message
+        --version                    show version
+</pre>
+
+The @webby@ program is actually a smart wrapper around "Rake":http://docs.rubyrake.org/. It is used to run the tasks that will create new pages, build the output products, and deploy the site to a server. The list of available tasks can be seen by typing the following command in a Webby site folder:
+
+pre. webby -T
+
+The second program, @webby-gen@, is used less often but it is no less important. This is the *generate* command, and it is used to create a new Webby site folder and files. Type @webby-gen --help@ on the command line to see how the program is used.
+
+<pre>
+webby-gen --help
+
+Usage: webby-gen [options] template site
+
+    -f, --force                      overwrite files that already exist
+    -s, --skip                       skip files that already exist
+    -u, --update                     update rake tasks for the site
+    -p, --pretend                    run but do not make any changes
+
+    -t, --templates                  list available templates
+
+common options:
+    -h, --help                       show this message
+        --version                    show version
+</pre>
+
+The Webby generate command will create a new site folder (or update an existing site folder) using files from the desired template type. Each template is a collection of files that can be used as the starting point for a Webby project. You can see the list of available templates:
+
+pre. webby-gen --templates
+
+h2. Working With Resources
+
+A resource is any file that is found in the _content_ or _layouts_ folders. Resources are either copied to the output folder or they are processed through the Webby filter engine to generate an output file. Resources fall into one of three types:
+
+* Files
+* Pages
+* Layouts
+
+Files are the simplest resource to handle. They are copied, unchanged, from the content folder to the output folder. Files include resources such as images, CSS stylesheets, and so forth. A file will be copied from its location in the content folder to its corresponding location in the output folder -- i.e. a file located at @content/some/folder/image.jpg@ would be copied to @output/some/folder/image.jpg@.
+
+Files will only be found in the _content_ folder. The _layouts_ folder is reserved solely for layouts.
+
+h3(#pages). Pages
+
+Pages are found in the _content_ folder along with regular files. Pages contain *meta-data* at the top of the file; this is what differentiates a page from a regular file. The meta-data is a section of "YAML":http://www.yaml.org/spec/1.1/ formatted text that describes various properties and attributes of the page. These attributes are used by Webby to determine how the page will be processed by the filter engine.
+
+Let's look at an example page.
+
+<pre>
+<%= Webby::YAML_SEP %>
+title:      Lorem Ipsum
+created_at: Wed Aug 29 08:57:00 -0600 2007
+filter:
+  - erb
+  - textile
+<%= Webby::YAML_SEP %>
+h2. <%%= @page.title %>
+
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nunc congue ipsum
+vestibulum libero. Aenean vitae justo. Nam eget tellus. Etiam convallis, est eu
+lobortis mattis, lectus tellus tempus felis, a ultricies erat ipsum at metus.
+</pre>
+
+The page meta-data is contained in the first section. It is located between the two @---@ lines. The page meta-data will not be present in the generated HTML file. Only the page content (the text below the second @---@ line) will be rendered into the final HTML file. The meta-data defines a collection of attributes that (1) are made available to the various Webby filters and (2) provide instructions to the Webby filter engine itself.
+
+Three attributes are defined in the above example: @title@, @created_at@, and @filter@. The first attribute, @title@, is associated with the value "Lorem Ipsum". This attribute is used in the first line of the page content to render the title using a combination of the ERB and Textile filters (more can be read in the "Filters":#filters section of this manual). The example page above will result in the following snippet of HTML code.
+
+<pre>
+<h2>Lorem Ipsum</h2>
+
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nunc congue ipsum
+vestibulum libero. Aenean vitae justo. Nam eget tellus. Etiam convallis, est eu
+lobortis mattis, lectus tellus tempus felis, a ultricies erat ipsum at metus.</p>
+</pre>
+
+You can see that the value of the @title@ attribute was substituted for the ERB snippet @<%%= @page.title %>@. All page attributes can be accessed using the @@page.attribute@ syntax within an ERB block. This will be discussed in greater detail in the "ERB Filter":#erbfilter section.
+
+The last attribute in the meta-data section is the @filter@ attribute. The value for this attribute is a list of filters that will be applied to the page contents. The filters will be applied in the order they are specified. For the example page this would be the ERB filter followed by the Textile filter.
+
+h4. Page Attributes
+
+Attribute identifiers cannot contain spaces; they must be separated from their values by a colon. Other than that, you are free to define as many attributes as you like. Aside from defining values that can be rendered into a page, attributes are also used to find other pages in the site. Finding and linking to other pages is discussed in the "ERB Filter":#erbfilter section.
+
+There are a few attributes that control when, where, and how pages are rendered. These are listed below with a brief description of how the attribute affects the system.
+
+* *directory*  --  Defines the path in the output directory where the rendered page should be stored. If left empty, then the path of the page in the content folder is used as the output directory.
+* *dirty*  --  The dirty flag is used to determine whether the page should rendered or not. Normally this is automatically determined by the filter engine, but it can be overridden by setting this attribute. If the dirty flag is set to _true_ then the page will always be rendered. If the dirty flag is set to _false_ then the page will never be rendered.
+* *extension*  --  Defines the extension that will be appended to the filename of the rendered page in the output folder. The extension is determined by looking at the following:
+** the meta-data of the current page for an @extension@ attribute
+** the meta-data of layout file of the current page for an @extension@ attribute
+** the extension of this page file in the _content_ folder
+* *filename*  --  The name of the rendered page in the output folder. If left blank, the name of the file in the content folder is used.
+* *filter*  --  Defines the list of filters that will be applied to the contents of this page. If left blank, then the default filter will be applied to the page contents.
+* *layout*  --  Defines the layout that the page contents will be rendered into. The default layout will be used if this attribute is not defined. The value of @nil@ should be specified if the page should not be rendered into any layout.
+
+The following attributes are defined for each page in the content folder. These attributes cannot be changed in the page's meta-data section. However, they are available to the ERB filter when rendering the contents of a page.
+
+* *path*  --  The full path to the file in the _content_ folder
+* *dir*  --  The relative directory in the output folder where the page will be rendered
+* *name*  --  The name of the file in the _content_ folder excluding any path information
+* *ext*  --  The extension of the file in the _content_ folder
+* *mtime*  --  The modification time of the file in the _content_ folder
+* *url*  --  A URL suitable for creating a link to the page
+* *destination*  --  The path in the output folder where the page will be rendered
+
+h4. Page Filters
+
+Filters operate on the content of a page by transforming the text of the content section according to the rules of the individual filter. Some filters transform simplified markup into true HTML syntax; examples of these are the Textile filter and the Markdown filter. Other filters will rewrite URLs (basepath filter) or clean up the generated HTML (tidy filter). All the filters are discussed in detail in the "Filters":#filters section of this document.
+
+h3. Layouts
+
+Layouts provide the basic framework for a page  --  the header, the footer, the navigation. They provide a consistent look and feel across all pages in the website. Individual pages contain just the content for that particular page.
+
+<% graphviz :path => "images", :class => "push-0", :alt => "layout diagram" do %>
+digraph layout_graph {
+  rankdir = LR;
+  edge [fontname="Verdana", fontsize=8];
+  node [fontname="Verdana", fontsize=10];
+
+  page -> layout [label="rendered\ninto"];
+  layout -> HTML [label="results\nin"];
+}
+<% end %>
+
+The diagram to the right shows a typical page rendering process. The content of a page is rendered by the Webby filter engine. The rendered content is inserted into the layout specified by the page; the content insertion occurs as the layout is being rendered. The result is the HTML that is stored in the _output_ folder.
+
+Layouts are treated exactly as pages are treated with one exception  --  the layout has access to the rendered contents of another page in site. The content of the page being rendered is made available to the layout via the @@content@ variable accessible from the ERB filter.
+
+<pre>
+<%= Webby::YAML_SEP %>
+extension: html
+filter:    erb
+<%= Webby::YAML_SEP %>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <title><%= @page.title %></title>
+</head>
+<body>
+  <%%= @content %>
+</body>
+</html>
+</pre>
+
+The example above shows a very simple layout. The content for the current page being rendered will be inserted between the HTML body tags.
+
+Along with the @@content@ variable, all the attributes of the current page being rendered are also accessible in the layout. The page title is inserted into the HTML title tags. But again, any page attribute can be accessed within the layout via the @@page@ variable.
+
+h2(#filters). Filters
+
+Filters are used in Webby to transform the text of pages and layouts. The filters applied to a page are defined in the meta-data of the page. The filters are used to transform different parts of the page contents resulting in HTML syntax, images, highlighted code, etc. Filters apply equally to pages and to layouts  --  that is, pages and layouts are treated in the same manner by filters.
+
+This section will look at the various filters provided by Webby, what those filters do, and how they should be used. Enjoy!
+
+h3(#erbfilter). ERB
+
+"ERB":http://ruby-doc.org/stdlib/libdoc/erb/rdoc/classes/ERB.html provides an easy to use but powerful templating system for Ruby. Using ERB, Ruby code can be added to any plain text document for the purposes of generating document information details and/or flow control. Much of the functionality Webby has to offer is made available through the erb filter. ERB does not place any limitations on the content of the page, so it is recommended to use the erb filter with another filter that simplifies the HTML markup  --  Textile is my favorite, but Markdown and HAML support are provided in Webby, as well. Chose the markup language that suits your style.
+
+Some examples of ERB have already been seen in the "pages":#pages section of this document. Ruby code is placed between ERB delimiters, @<%%= ruby code %>@ somewhere in the content section of your page or layout. The erb filter executes that code and inserts the results into the page. Webby provides quite a few features that are accessed via ERB. Page attributes are one feature, and "helper methods":#helpermethods are another that are discussed elsewhere in this manual.
+
+<pre>
+The title of this page is "<%%= @page.title" %>".
+</pre>
+
+<pre>
+The title of this page is "<%= @page.title %>".
+</pre>
+
+<div class="label">Usage</div>
+<div class="desc">
+Include "erb" in the filter list of the page or layout that contains ERB formatting.
+</div>
+
+<div class="label">Options</div>
+<div class="desc">
+none
+</div>
+
+<div class="label">Require</div>
+<div class="desc">
+none
+</div>
+
+h3. Textile
+
+"Textile":http://en.wikipedia.org/wiki/Textile_%28markup_language%29 is a lightweight markup language originally developed by Dean Allen and billed as a "humane Web text generator". The textile filter converts Textile formatted text into valid, well-formed XHTML.
+
+A complete textile reference is beyond the scope of this document. Please refer to the "Textile reference":http://hobix.com/textile/ compiled by _why the luck stiff_ <sup><a href="#fn1">1</a></sup>.
+
+The textile filter will operate on all the contents of a page or layout. Given that fact, it should be one of the last filters applied to the page. You can prevent a section of the page from being processed by the textile filter by surrounding it with @<notextile>...</notextile>@ tags.
+
+<div class="label">Usage</div>
+<div class="desc">
+Include "textile" in the filter list of the page or layout that contains Textile formatting
+</div>
+
+<div class="label">Options</div>
+<div class="desc">
+none
+</div>
+
+<div class="label">Require</div>
+<div class="desc">
+The *RedCloth* gem must be installed on your system in order to use the textile filter.
+</div>
+
+fn1(fn){clear:both}. Please don't ask. Why is very smart, he wrote the Ruby code that handles Textile markup, and the code is very solid. Enjoy the benefits of his work.
+
+h3. Markdown
+
+"Markdown":http://daringfireball.net/projects/markdown/ is a lightweight markup language created by John Gruber. It allows you to write using an easy-to-read, easy-to-write plain text format. From the Markdown web page:
+
+bq. The overriding design goal for Markdown's formatting syntax is to make it as readable as possible. The idea is that a Markdown-formatted document should be publishable as-is, as plain text, without looking like it's been marked up with tags or formatting instructions. While Markdown's syntax has been influenced by several existing text-to-HTML filters, the single biggest source of inspiration for Markdown's syntax is the format of plain text email.
+
+The markdown filter will operate on all the contents of a page or layout. Given that fact, it should be one of the last filters applied to the page.
+
+<div class="label">Usage</div>
+<div class="desc">
+Include "markdown" in the filter list of the page or layout that contains Markdown formatting.
+</div>
+
+<div class="label">Options</div>
+<div class="desc">
+none
+</div>
+
+<div class="label">Require</div>
+<div class="desc">
+The *rdiscount* gem must be installed on your system in order to use the markdown filter.
+</div>
+
+h3. HAML & SASS
+
+"HAML":http://haml.hamptoncatlin.com/ is a markup language created by Hampton Catlin that's used to cleanly and simply describe the XHTML of any web document without the use of inline code. SASS is the equivalent for CSS documents. From the HAML website:
+
+bq. "HAML":http://haml.hamptoncatlin.com/docs/haml and "SASS":http://haml.hamptoncatlin.com/docs/sass are templating engines for the two most common types of documents on the web: HTML and CSS, respectively. They are designed to make it both easier and more pleasant to code HTML and CSS documents, by eliminating redundancy, reflecting the underlying structure that the document represents, and providing elegant, easily understandable, and powerful syntax.
+
+Both the haml and the sass filter will operate on all the contents of a page or layout. Given that fact, these should be one of the last filters applied to the page.
+
+<div class="label">Usage</div>
+<div class="desc">
+Include "haml" in the filter list of the page or layout that contains HAML  formatting. Include "sass" in the filter list of the page that contains SASS formatting (this should be a CSS page).
+</div>
+
+<div class="label">Options</div>
+<div class="desc">
+
+Options are passed to the haml filter by setting the "haml_options" in the page meta-data  --  the hash of options defined under the "haml_options" attribute will be passed to the haml filter engine when it is run. Please refer to the HAML documentation for the list of available options.
+
+p(last). Options are passed to the sass filter by setting the "sass_options" in the page meta-data  --  the hash of options defined under the "sass_options" attribute will be passed to the sass filter engine when it is run. Please refer to the SASS documentation for the list of available options.
+
+</div>
+
+<div class="label">Require</div>
+<div class="desc">
+The *haml* gem must be installed on your system in order to use the haml filter or the sass filter.
+</div>
+
+h3. Outline
+
+The Outline filter is used to insert outline numbering into HTML heading tags (h1, h2, h3, etc.) and to generate a table of contents based on the heading tags. The table of contents is inserted into the page at the location of the @<toc />@ tag. If there is no @<toc />@ tag, then a table of contents will not be created but outline numbering will still take place.
+
+If a table of contents is desired without outline numbers being inserted into the heading tags, this can be specified in the attibutes of the @<toc />@ tag itself.
+
+<pre>
+<toc numbering="off" />
+</pre>
+
+This will generate a table of contents, but not insert outline numbering into the heading tags. The full list of "TOC attributes":/rdoc/classes/Webby/Filters/Outline.html can be found in the source documentation.
+
+The Outline filter will only work on valid HTML or XHTML pages. Therefore it should be used after any markup langauge filters (textile, markdown, etc.).
+
+h3. BasePath
+
+The basepath filter is used to rewrite the base path location for all URLs in a page. This is useful for the times when the publish location of the website is no at the root of the web server  --  @http://your.website.com/path/to/your/site@ for example. This allows pages and resources (images, javascript, stylesheets, etc.) to be referenced from the root of the Webby web server for easy development, but the paths of these resources can easily be changed by the basepath filter when the website is being deployed.
+
+The basepath filter only works on HTML/XHTML text, and therefore, it should be one of the last (if not the last) filter applied to your content. It is recommended to only include the basepath filter in your layout(s). The basepath filter should appear before the tidy filter.
+
+<div class="label">Usage</div>
+<div class="desc">
+
+Include "basepath" in the filter list of your layout(s). Specify the new base path to use either as a command line argument or as an option configured in the _Rakefile_. The base path specified on the command line takes precedence over the base path specified in the Rakefile.
+
+<pre style="margin-bottom:0">
+$ webby rebuild BASE='http://your.website.com/path/to/your/site'
+</pre>
+</div>
+
+<div class="label">Options</div>
+<div class="desc">
+
+Options can be passed to the basepath filter by specifying them in the project _Rakefile_.
+
+<pre style="margin-bottom:0">
+SITE.xpaths << '/html/body//img[@usemap]'
+SITE.base = 'http://webby.rubyforge.org'
+</pre>
+</div>
+
+<div class="label">Require</div>
+<div class="desc">
+none
+</div>
+
+h3(#tidy). Tidy
+
+"Tidy":http://www.w3.org/People/Raggett/tidy/ is a useful application for cleaning up and detecting errors in XHTML text. The tidy filter will run your XHTML code through the tidy program and report any errors in the build log. From the HTML Tidy website:
+
+bq. When editing HTML it's easy to make mistakes. Wouldn't it be nice if there was a simple way to fix these mistakes automatically and tidy up sloppy editing into nicely layed out markup? Well now there is! Dave Raggett's HTML TIDY is a free utility for doing just that. Tidy is able to fix up a wide range of problems and to bring to your attention things that you need to work on yourself. Each item found is listed with the line number and column so that you can see where the problem lies in your markup. Tidy won't generate a cleaned up version when there are problems that it can't be sure of how to handle. These are logged as "errors" rather than "warnings".
+
+The tidy program only works on HTML/XHTML text, and therefore, tidy should be one of the last (if not the last) filter applied to your content. It is recommended to only include the tidy filter in your layout(s).
+
+<div class="label">Usage</div>
+<div class="desc">
+Include "tidy" as the last item in the filter list of your layout(s).
+</div>
+
+<div class="label">Options</div>
+<div class="desc">
+
+Options can be passed to the tidy program by specifying them in the project _Rakefile_. These are the command line options that will be passed to the tidy program when it is run.
+
+<pre style="margin-bottom:0">
+SITE.tidy_options = '-indent -wrap 80'
+</pre>
+</div>
+
+<div class="label">Require</div>
+<div class="desc">
+The HTML Tidy application must be installed on your system, and the @tidy@ executable must be available on the path.
+</div>
+
+h2. Using Rake
+
