@@ -1,6 +1,6 @@
 begin
   require 'vlad'
-  Vlad.load(:web => :apache, :scm => :git)
+  Vlad.load(:web => :apache, :scm => :git, :app => nil)
   
   namespace :vlad do
     
@@ -10,11 +10,11 @@ begin
     end
     
     desc "deploy site"
-    task :deploy => [:update_code, :rebuild]
+    task :deploy => [:update, :rebuild]
     
     desc "update vhost"
     task :update_vhost do
-      sudo "cp #{shared_path}/config/vhost /etc/apache2/sites-enabled/#{application}"
+      run "sudo cp #{shared_path}/config/vhost /etc/apache2/sites-enabled/#{application}"
     end
   end
 rescue LoadError
