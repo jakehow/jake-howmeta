@@ -7,13 +7,16 @@ filter:
 nav_item: services
 ---
 
-h2. project rescue
+<div class="article">
+h2. availability
 
-
-h2. training
-
-
-h2. code and process audit
-
-* ensure your project meets necessary security and best practice standards
-* 
+<div class="body">
+	<p>
+		While I do work full time in my role as Chief Technologist for Sunshine Suites, I am available for short term and part time work outside of this role.  If your project is in distress and in need of <strong>someone to rescue it</strong>, if you need a trainer for <strong>team or one-on-one training</strong>, or if you need someone to <strong>crank out a prototype</strong> as quickly as possible, we should talk.  I am also available for <strong>code and deployment process auditing</strong>. 
+	</p>
+	
+	<p>
+		In the Rails world, I have seen a lot of projects, seen and made at least as many mistakes, and grown with the framework since its early days.   I can bring a wealth of experience to any Rails project, but am most interested in business applications that are delivering real value to their customers.  If you need my help, please <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x6a;&#x61;&#x6b;&#x65;&#46;&#104;&#111;&#x77;&#x65;&#114;&#116;&#x6f;&#x6e;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">get in touch</a> to discuss your project.
+	</p>
+</div>
+</div>

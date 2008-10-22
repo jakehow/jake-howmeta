@@ -6,26 +6,39 @@ filter:
 nav_item: resume
 dirty: 		true
 ---
+
+<div class="article">
+
 h2. objective
 
+<div class="body">
 To help businesses and software projects succeed through attention to detail, process, and outcome.
+</div>
 
 h2. skills
+
+<div class="body">
 * 8+ years developing web sites and applications
 * developing "Ruby on Rails":http://rubyonrails.org applications since late 2005 (pre 1.0)
 * maintaining and upgrading application codebases across versions of Rails
 * building, managing and executing production deployment scenarios
 * contributing to "open source projects":http://github.com/jakehow in the ruby community
+</div>
 
 h2. experience
 
+<div class="body">
 <%
   jobs = @pages.find(:all, :in_directory => 'resume/jobs', :recursive => true, :sort_by => 'filename' )
 	jobs.each do |page|
 -%>
     <%= render(page) %>
 <% end -%>
+</div>
 
 h2. education
 
+<div class="body">
 "School of Visual Arts":http://sva.edu, New York, NY -- Photography Major 2000 - 2002
+</div>
+</div>

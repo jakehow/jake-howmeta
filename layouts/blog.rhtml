@@ -13,6 +13,9 @@ filter:    erb
 
    <!-- Homepage CSS -->
    <link rel="stylesheet" href="/css/site.css" type="text/css" media="screen, projection" />
+
+	<!- Feed Discovery -->
+	<link rel="alternate" type="application/rss+xml" href="http://feeds.feedburner.com/jake-howmeta" title="jake howerton -- blog" />
 </head>
 <body>
 
@@ -24,6 +27,7 @@ filter:    erb
 			<li><%= link_to 'home', '/' %></li>
 			<li><%= link_to 'blog', '/blog', :attrs => {:class => "active"} %></li>
 			<li><%= link_to 'projects', '/projects' %></li>
+			<li><%= link_to 'services', '/services' %></li>
 			<li><%= link_to 'resume', '/resume' %></li>
 		</ul>
 	</div>

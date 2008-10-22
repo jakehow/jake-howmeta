@@ -3,7 +3,6 @@ title:      jake howerton -- projects
 created_at: 2008-10-16 01:24:56.340859 -04:00
 filter:
   - erb
-  - textile
 nav_item: projects
 dirty:  true
 ---
@@ -13,5 +12,11 @@ dirty:  true
 	projects.delete(@page)
 	projects.each do |page|
 -%>
-    <%= render(page) %>
+	<div class="article">
+		<h2><%= page.title %></h2>
+
+	  <div class="body">
+	    <%= render(page) %>
+	  </div>
+	</div>
 <% end -%>

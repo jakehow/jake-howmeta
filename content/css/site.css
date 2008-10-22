@@ -17,7 +17,7 @@ color:
 
 body {
 	margin: 0;
-	background-color: #fff;
+	background: #fff url('/images/gradient_bg.gif');
   font-family: Verdana, "Bitstream Vera Sans", sans-serif;
 }
 
@@ -71,10 +71,10 @@ div.container {
 
 div.home {
 	font-size: 200%;
-	color: #d0d0d0;
+	color: #aabbdd;
 	background-color: #000;
 	height: 592px;
-	border-bottom: 3px solid #d0d0d0;
+	border-bottom: 3px solid #aabbdd;
 }
 
 #header p.title { font-size: 3em; line-height: 1; margin-bottom: 0.5em; }
@@ -84,7 +84,8 @@ div.home {
 	margin-left: 10px;}
 	
 #big_footer { 
-	background-color: #d0d0d0;
+	background-color: #000;
+	color: #fff;
 	position: fixed;
 	bottom: 0px;
 	width: 100%;
@@ -92,7 +93,7 @@ div.home {
 	font-style: italic;
 	text-align: right;
 	padding: 10px 0px 10px 0px;
-	border-top: 4px solid #000;
+	border-top: 4px solid #97b9da;
 }
 
 #intro_content { float: right;margin-right: 60px; padding-top: 80px;}
@@ -103,7 +104,7 @@ div#header {
 	margin: 0;
 	padding: 0;
 	height: 75px;
-	border-bottom: 4px solid #d0d0d0;
+	border-bottom: 4px solid #aabbdd;
 }
 
 div#header h1 {
@@ -114,7 +115,7 @@ div#header h1 {
 
 ul#nav {
 	float: left;
-	background-color: #d0d0d0;
+	background-color: #97b9da;
 	list-style-type: none;
 	padding:0;
 	margin:0;
@@ -134,8 +135,8 @@ ul#nav li a {
 
 ul#nav li a.active {
 	background-color: #fff;
-	border: 1px solid #d0d0d0;
-	border-bottom: 2px solid #d0d0d0;
+	border: 1px solid #97b9da;
+	border-bottom: 2px solid #97b9da;
 }
 
 div#content {
@@ -146,4 +147,28 @@ div#content {
 	margin-bottom: 100px;
 }
 
+div.article {
+	background-color: #fff;
+	margin-bottom: 40px;
+	border-right: 2px solid #ccc;
+	border-bottom: 3px solid #ccc;
+}
+div.article h2 {
+	margin: 0 0 10px 0;
+	background-color: #fff;
+	border-bottom: 3px solid #ccc;
+	padding: 10px;
+}
+
+div.article span.date {
+	float: right;
+	font-size: 70%;
+	color: #666;
+	font-style: italic;
+	text-align: right;
+}
+
+div.article div.body {
+	margin: 0px 40px 0px 40px;
+}
 /* EOF */

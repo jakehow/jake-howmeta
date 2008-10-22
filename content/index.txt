@@ -6,9 +6,10 @@ filter:
   - textile
 ---
 
-Hi. I am "Jake Howerton":http://www.google.com/search?q=%22Jake%20Howerton%22.  
+Hi. I am "Jake":http://www.workingwithrails.com/person/5543-jake-howerton "Howerton":http://www.google.com/search?q=%22Jake%20Howerton%22.  
 I sometimes find time to "blog":/blog.  
 You can follow "me on twitter":http://twitter.com/jakehow.
 Browse some "apps that I have built":/projects.  
 Check my open source work on "github":http://github.com/jakehow.
-Or review "my resume":/resume.
+Review "my resume":/resume.
+Or let me know how "I can help your project":/services.
