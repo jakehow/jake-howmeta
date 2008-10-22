@@ -7,7 +7,7 @@
 			
 				# rewrite old wordpress links
 				RewriteRule ^/200(.*)/$ blog/200$1.html [R=301,L]
-				RewriteRule ^/feed$ blog/feed.xml [R=301,L]
-				RewriteRule ^/feed/$ blog/feed.xml [R=301,L]
+				RewriteRule ^/feed$ http://feeds.feedburner.com/jake-howmeta [R=301,L]
+				RewriteRule ^/feed/$ http://feeds.feedburner.com/jake-howmeta [R=301,L]
 			</IfModule>
 </VirtualHost>
