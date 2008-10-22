@@ -11,5 +11,4 @@ I sometimes find time to "blog":/blog.
 You can follow "me on twitter":http://twitter.com/jakehow.
 Browse some "apps that I have built":/projects.  
 Check my open source work on "github":http://github.com/jakehow.
-Review "my resume":/resume.
-Or let me know how "I can help your project":/services.
+Or review "my resume":/resume.

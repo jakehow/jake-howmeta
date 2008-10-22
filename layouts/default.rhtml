@@ -24,7 +24,6 @@ filter:    erb
 			<li><%= link_to 'home', '/' %></li>
 			<li><%= link_to 'blog', '/blog', :attrs => {:class => "#{'active' if @page.nav_item == 'blog'}"} %></li>
 			<li><%= link_to 'projects', '/projects', :attrs => {:class => "#{'active' if @page.nav_item == 'projects'}"} %></li>
-			<li><%= link_to 'services', '/services', :attrs => {:class => "#{'active' if @page.nav_item == 'services'}"} %></li>
 			<li><%= link_to 'resume', '/resume', :attrs => {:class => "#{'active' if @page.nav_item == 'resume'}"} %></li>
 		</ul>
 	</div>
@@ -32,6 +31,9 @@ filter:    erb
  	<div id="content">
       <%= @content %>
    </div>
+	<div id="big_footer">
+		Get in touch: <a href="&#109;&#97;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x6a;&#x61;&#x6b;&#x65;&#46;&#104;&#111;&#x77;&#x65;&#114;&#116;&#x6f;&#x6e;&#x40;&#103;&#109;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#x6d;">email</a> <a href="http://twitter.com/jakehow">twitter</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</div>
 </div>
 </body>
 </html>

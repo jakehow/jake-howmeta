@@ -5,4 +5,6 @@ filter:
   - erb
   - textile
 ---
-p(title). <%= h(@page.title) %>
+h2. <%= h(@page.title) %>
+
+"http://gotreceipts.com":http://gotreceipts.com (coming soon) is an application that allows groups to track expenses and their receipts efficiently.  It eliminates the need to have one team member constantly tracking down receipts for everyone else's business expenditures.  The app uses the "Wesabe":http://wesabe.com API for efficient import of expense transactions.  This app was built as part of "RailsRumble08":http://railsrumble.com, look for launch soon.

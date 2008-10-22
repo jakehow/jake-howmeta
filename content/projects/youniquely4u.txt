@@ -5,4 +5,8 @@ filter:
   - erb
   - textile
 ---
-p(title). <%= h(@page.title) %>
+h2. <%= h(@page.title) %>
+
+<div class="thumbnail"><img src="http://img.skitch.com/20081022-e2jps1cdnqfwfw86myqac66gcu.preview.jpg" alt="Youniquely 4 U : Wayne Public Library : Summary" /></div>
+
+"Youniquely4u":http://youniquely4u.com is a tool that helps public libraries faciliate communication with their patrons.  Librarians can post events, reading recommendations, and other resources to the site while patrons can specify what kinds of items they are interested in and rsvp for upcoming events.  This app was built as part of a consulting project for "Blue Iceberg LLC":http://blue-iceberg.com.

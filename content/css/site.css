@@ -82,6 +82,18 @@ div.home {
 #footer { 
 	font-size: 50%;
 	margin-left: 10px;}
+	
+#big_footer { 
+	background-color: #d0d0d0;
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	font-size: 150%;
+	font-style: italic;
+	text-align: right;
+	padding: 10px 0px 10px 0px;
+	border-top: 4px solid #000;
+}
 
 #intro_content { float: right;margin-right: 60px; padding-top: 80px;}
 #jake_photo { float: right;}
@@ -131,6 +143,7 @@ div#content {
 	clear: both;
 	margin-left: 100px;
 	padding-top: 40px;
+	margin-bottom: 100px;
 }
 
 /* EOF */

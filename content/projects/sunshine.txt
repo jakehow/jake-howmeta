@@ -5,4 +5,8 @@ filter:
   - erb
   - textile
 ---
-p(title). <%= h(@page.title) %>
+h2. <%= h(@page.title) %>
+
+<div class="thumbnail"><img src="http://img.skitch.com/20081022-b7khexnbut4aa2p4b5rk6a1h6c.preview.jpg" alt="Sunshine Community Center" /></div>
+
+This is actually several applications working together ( out of which the "multi_app_routing rails plugin":http://github.com/jakehow/multi_app_routing was born).  The applications provide core functionality for "Sunshine Realty Management":http://sunshineny.com, including but not limited to network monitoring and provisioning, a work order support system, community profiles, service management, and billing.

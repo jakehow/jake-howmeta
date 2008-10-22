@@ -8,4 +8,4 @@ filter:
 --- 
 
 
-hi!
+Hey! I am moving everything over to a "webby":http://webby.rubyforge.org built site and will be experimenting a bit.  I plan to update this post with some details on the setup and tips for going through this process.  In the meantime everything here is "public on github":http://github.com/jakehow/jake-howmeta.
