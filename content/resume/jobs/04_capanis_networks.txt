@@ -6,7 +6,7 @@ filter:
   - textile
 ---
 
-"Capanis Networks":http://capanis.com, Jan 2002 - Dec 2005, Operations Engineer, New York, NY 
+"Capanis Networks":http://capanis.com, Jan 2002 - Dec 2005, *Operations Engineer*, New York, NY 
 * Maintained large web app infrastructure including Linux and Windows Servers 
 * Responsible for monitoring and maintaining client networks in nationwide footprint. 
 * Building, configuring, and patching network of linux based “edge routers”.

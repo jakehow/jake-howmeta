@@ -6,7 +6,7 @@ filter:
   - textile
 ---
 
-"Blue Iceberg LLC":http://blue-iceberg.com, Jan 2006 - Dec 2007, Lead Developer, New York, NY 
+"Blue Iceberg LLC":http://blue-iceberg.com, Jan 2006 - Dec 2007, *Lead Developer*, New York, NY 
 * Oversaw migration from PHP to Ruby on Rails. 
 * Build client sites and complex web apps. 
 * Enforced coding standards, designed production tools and processes.
